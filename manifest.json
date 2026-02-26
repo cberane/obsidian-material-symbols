@@ -1,7 +1,7 @@
 {
 	"id": "material-symbols",
 	"name": "Material Symbols",
-	"version": "0.2.0",
+	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
 	"description": "This plugin adds the material symbols (outlined) to obsidian",
 	"author": "Cristoph Berane",

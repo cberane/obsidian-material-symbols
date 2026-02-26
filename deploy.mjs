@@ -26,7 +26,16 @@ execSync('npm run build', { stdio: 'inherit', cwd: __dirname });
 // 5. Copy deployment files
 console.log('\nCopying files to deploy/...');
 for (const file of files) {
-  fs.copyFileSync(path.join(__dirname, file), path.join(deployDir, file));
+  const srcPath = path.join(__dirname, file);
+  const destPath = path.join(deployDir, file);
+
+  if (!fs.existsSync(srcPath)) {
+    console.error(`Error: Expected source file not found: ${srcPath}`);
+    console.error('Deployment aborted. Ensure the build has produced all required files.');
+    process.exit(1);
+  }
+
+  fs.copyFileSync(srcPath, destPath);
   console.log(`Copied ${file} → deploy/${file}`);
 }
 

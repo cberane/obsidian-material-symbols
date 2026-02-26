@@ -64,6 +64,9 @@ function extractWoff2Url(css) {
   // Take the last one (largest/most complete subset) or any - for variable icon font they're all the same
   const lastMatch = match[match.length - 1];
   const urlMatch = lastMatch.match(/url\((https:\/\/fonts\.gstatic\.com\/[^)]+\.woff2)\)/);
+  if (!urlMatch || urlMatch.length < 2) {
+    throw new Error('No woff2 URL found in Google Fonts CSS');
+  }
   return urlMatch[1];
 }
 
